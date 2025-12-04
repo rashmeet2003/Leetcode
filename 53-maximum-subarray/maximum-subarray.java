@@ -1,27 +1,21 @@
+import java.util.*;
 class Solution {
-    public static int maxSubArray(int[] num) {
-        int ms = Integer.MIN_VALUE;   
-        int cs = 0;                   
-        boolean allNeg = true;        
-        int maxNeg = Integer.MIN_VALUE; 
+    public int maxSubArray(int[] nums) {
+      int res=Integer.MIN_VALUE;
+      int sum=0;
 
-        for (int x : num) {
-            if (x >= 0) allNeg = false;
+      int n=nums.length;
 
-            if (x > maxNeg) maxNeg = x;
+     for(int i=0;i<n;i++)
+      {
+        sum=sum+nums[i];
+        res=Math.max(sum,res);
 
-            cs += x;
-            if (cs < 0) cs = 0;
-
-            if (cs > ms) ms = cs;
-
-            if (allNeg) ms = maxNeg;
-        }
-
-        return ms;
-    }
-    public static void Main(String args[]){
-        int num[] = {1,-2,-4,8,9,4,-10,2,-6};
-        maxSubArray(num);
+        if(sum<0)
+        sum=0;
+      }
+      
+        
+     return res;   
     }
 }
