@@ -1,26 +1,23 @@
 class Solution {
     public int maxSubArray(int[] num) {
-        int ms = Integer.MIN_VALUE;
-        int cs = 0;
-        boolean allNeg = true;
-        int maxNeg = Integer.MIN_VALUE;
+        int ms = Integer.MIN_VALUE;   
+        int cs = 0;                   
+        boolean allNeg = true;        
+        int maxNeg = Integer.MIN_VALUE; 
 
-        for( int i=0; i<num.length; i++){
+        for (int x : num) {
+            if (x >= 0) allNeg = false;
 
-            if (num[i]>=0){
-                allNeg = false;
-            }
-            maxNeg = Math.max(maxNeg,num[i]);
+            if (x > maxNeg) maxNeg = x;
 
-            cs = cs + num[i];
-            if(cs<0){
-                cs = 0;
-            }
-            ms = Math.max(cs,ms);
-            if(allNeg){
-                ms = maxNeg;
-            }
+            cs += x;
+            if (cs < 0) cs = 0;
+
+            if (cs > ms) ms = cs;
+            
+            if (allNeg) ms = maxNeg;
         }
+
         return ms;
     }
 }
