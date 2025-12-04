@@ -1,5 +1,5 @@
 class Solution {
-    public int maxSubArray(int[] num) {
+    public static int maxSubArray(int[] num) {
         int ms = Integer.MIN_VALUE;   
         int cs = 0;                   
         boolean allNeg = true;        
@@ -14,10 +14,14 @@ class Solution {
             if (cs < 0) cs = 0;
 
             if (cs > ms) ms = cs;
-            
+
             if (allNeg) ms = maxNeg;
         }
 
         return ms;
+    }
+    public static void Main(String args[]){
+        int num[] = {1,-2,-4,8,9,4,-10,2,-6};
+        maxSubArray(num);
     }
 }
