@@ -1,17 +1,21 @@
 class Solution {
     public int thirdMax(int[] nums) {
-        Arrays.sort(nums);
-        int count = 1;
-        int last = nums[nums.length -1];
-        int i;
-        for(i = nums.length -2; i>=0;i--){
-            if(nums[i] != nums[i+1]){
-                count++;
-            }
-            if(count == 3){
-                return nums[i];
-            }
-        }
-        return nums[nums.length-1];
+        long f = Long.MIN_VALUE;
+        long s = Long.MIN_VALUE;
+        long t = nums[0];
+
+      for(int i = 0;i<nums.length;i++){
+        int val = nums[i];
+        if(val > f){
+            t = s;
+            s = f;
+            f = val;
+        } else if(val > s && val < f){
+            t = s;
+            s = val;
+        } else if(val > t && val < s) t = val;
+      }
+
+      return (t == Long.MIN_VALUE || s == Long.MIN_VALUE) ? (int)f : (int)t;
     }
 }
